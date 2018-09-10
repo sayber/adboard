@@ -1,0 +1,17 @@
+body {
+}
+
+#remember{
+    margin-right: 7px;
+}
+
+.form-inline{
+    display: inline-block;
+}
+.pull-right a{
+	text-decoration: none;
+}
+.pull-right a:hover{
+	color: black;
+	transition: 0.3s;
+}
