@@ -6,12 +6,12 @@ This is a simple AdBoard app with multiple user support.
 
 Clone the repository
 ```
-git clone https://github.com/aminulsiam/Laravel-Todo-Application.git
+git clone https://github.com/sayber/adboard.git
 ```
 
 Then cd into the folder with this command
 ```
-cd Laravel-Todo-Application
+cd adboard
 ```
 
 Then do a composer install
