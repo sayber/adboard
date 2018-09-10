@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Model\UserInfo;
-use App\Model\UserRank;
 use App\Model\UserComments;
 use Illuminate\Http\Request;
 
@@ -22,11 +19,11 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         UserComments::create([
-            'user_id'     => $request->get('user_id'),
-            'commented_id'    => \Auth::user()->id,
-            'comment' => $request->get('comment')
+            'user_id'      => $request->get('user_id'),
+            'commented_id' => \Auth::user()->id,
+            'comment'      => $request->get('comment')
         ]);
 
-        return redirect('/profile/'.$request->get('user_id'));
+        return redirect('/profile/' . $request->get('user_id'));
     }
 }

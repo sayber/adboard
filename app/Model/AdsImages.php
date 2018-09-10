@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AdsImages extends Model
 {
-    /** @var string  */
+    /** @var string */
     protected $table = 'ads_images';
 
     /** @var array */

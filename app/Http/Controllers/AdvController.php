@@ -25,6 +25,7 @@ class AdvController extends Controller
         $adsList = Adv::with(['users', 'image'])
             ->orderBy('created_at', 'desc')
             ->paginate(self::COUNT);
+
         return view('board.main', compact('adsList'));
     }
 
@@ -55,7 +56,6 @@ class AdvController extends Controller
         }
 
 
-
         return redirect('/')
             ->with('flash_notification.message', 'New ad created successfully')
             ->with('flash_notification.level', 'success');
@@ -71,16 +71,16 @@ class AdvController extends Controller
 
         $fileData = [
 
-            'name' => $file->getClientOriginalName(),
-            'type' => $file->getType(),
+            'name'      => $file->getClientOriginalName(),
+            'type'      => $file->getType(),
             'extension' => $file->getClientOriginalExtension(),
-            'ads_id'=> $advId
+            'ads_id'    => $advId
         ];
 
         AdsImages::create($fileData);
         //перемещаем загруженный файл
         $destinationPath = 'uploads';
-        $file->move($destinationPath,$file->getClientOriginalName());
+        $file->move($destinationPath, $file->getClientOriginalName());
 
         return true;
     }

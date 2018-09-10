@@ -4,7 +4,6 @@ namespace App;
 
 use App\Model\AdsImages;
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 
 /**
  * Class Ads
@@ -12,7 +11,7 @@ use App\User;
  */
 class Ads extends Model
 {
-    /** @var string  */
+    /** @var string */
     protected $table = 'ads';
 
     /** @var array */

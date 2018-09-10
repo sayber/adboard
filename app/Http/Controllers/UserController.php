@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Http\Requests\UserRequest;
+use App\Model\UserComments;
 use App\Model\UserInfo;
 use App\Model\UserRank;
-use App\Model\UserComments;
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 
 /**
  * Class UserController
@@ -54,7 +54,7 @@ class UserController extends Controller
     public function userProfile(User $user)
     {
         $ratingAmount = 0;
-        $rank = null;
+        $rank         = null;
         foreach (UserRank::where('user_id', $user->id)->get() as $item) {
             $ratingAmount += $item['amount'];
             if ($user->id == $item['user_id'] && \Auth::user()->id == $item['ranked_id']) {
@@ -63,7 +63,7 @@ class UserController extends Controller
         }
 
         $comments = UserComments::with('user')->where('user_id', $user->id)->get();
-        
+
         return view('users.profile_update', compact(['user', 'rank', 'ratingAmount', 'comments']));
     }
 
@@ -77,11 +77,12 @@ class UserController extends Controller
         //@todo проверка нужна
         $ranked_id = \Auth::user()->id;
         UserRank::create([
-            'user_id' => $request->get('user_id'),
+            'user_id'   => $request->get('user_id'),
             'ranked_id' => $ranked_id,
-            'amount' => $request->get('amount')
+            'amount'    => $request->get('amount')
         ]);
-        return redirect('/profile/'.$request->get('user_id'));
+
+        return redirect('/profile/' . $request->get('user_id'));
     }
 
     /**
@@ -111,10 +112,10 @@ class UserController extends Controller
             $this->setUserInfo($request);
         } else {
             $user->info()->update([
-                'firstname' => $request->get('firstname'),
+                'firstname'  => $request->get('firstname'),
                 'secondname' => $request->get('secondname'),
-                'lastname' => $request->get('lastname'),
-                'phone' => $request->get('phone')
+                'lastname'   => $request->get('lastname'),
+                'phone'      => $request->get('phone')
             ]);
         }
 
@@ -135,11 +136,11 @@ class UserController extends Controller
         $userId = \Auth::user()->id;
 
         UserInfo::create([
-            'user_id' => $userId,
-            'firstname' => $request->get('firstname'),
+            'user_id'    => $userId,
+            'firstname'  => $request->get('firstname'),
             'secondname' => $request->get('secondname'),
-            'lastname' => $request->get('lasstname'),
-            'phone' => $request->get('phone')
+            'lastname'   => $request->get('lasstname'),
+            'phone'      => $request->get('phone')
         ]);
     }
 
